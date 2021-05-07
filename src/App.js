@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import UpdateCollection from './components/updateCollection.jsx';
 import CollectionDetail from './components/collectionDetail.jsx';
 import Collections from './components/collections.jsx';
+import './styles/main.scss';
 
 const App = (() => {
     return (
