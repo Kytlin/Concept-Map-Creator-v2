@@ -5,7 +5,8 @@ module.exports = {
     entry: './src/index.js',
     output: {
         path: path.join(__dirname, 'dist'),
-        filename: "[name].js"
+        filename: "[name].js",
+        publicPath: '/'
     },
     plugins: [new HtmlWebPackPlugin({
         template: "./src/index.html",
@@ -21,5 +22,8 @@ module.exports = {
                 }
             }
         ]
-    }
+    },
+    devServer: {
+        historyApiFallback: true,
+    },
 };
