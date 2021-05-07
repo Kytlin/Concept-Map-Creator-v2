@@ -31,6 +31,76 @@ app.get('/collections', async (req, res) => {
   }
 });
 
+app.get('/collections/:id', async (req, res) => {
+  console.log(req.params.id);
+
+  try {
+     const results = await db.query("select * FROM collections WHERE id = $1", [req.params.id]);
+     res.status(200).json({
+          status: "success",
+          data: {
+              title: results.rows
+          }
+      });
+  }
+  catch (err) {
+      console.log(err);
+  }
+});
+
+app.post('/collections', async (req, res) => {
+  console.log(req.body);
+
+  try {
+      const results = await db.query(
+          "INSERT INTO collections (title, summary, tag) values ($1, $2, $3) RETURNING *", 
+          [req.body.title, req.body.summary, req.body.tag]
+      );
+      console.log(results);
+      res.status(201).json({
+          status: "success",
+          data: {
+              title: results.rows[0]
+          }
+      });
+  } catch (err) {
+      console.log(err);
+  }
+});
+
+app.put('/collections/:id', async (req, res) => {
+  console.log(req.params.id);
+  console.log(req.body);
+
+  try {
+      const results = await db.query(
+          "UPDATE collections SET title = $1, summary = $2, tag = $3 WHERE id = $4 RETURNING *",                                   
+          [req.body.title, req.body.summary, req.body.tag, req.params.id]
+      );
+      console.log(results);
+      res.status(200).json({
+          status: "success",
+          data: {
+              results: results.rows[0]
+          }
+      });  
+  } catch (err) {
+      console.log(err);
+  }
+});
+
+app.delete('/collections/:id', async (req, res) => {
+  try {
+      const results = await db.query("DELETE FROM collections WHERE id = $1", [req.params.id]);
+      console.log(results);
+      res.status(204).json({
+          status: "success"
+      });
+  } catch (err) {
+      console.log(err);
+  }
+});
+
 app.listen(port, function () {
   console.log(`http://localhost:${port}`);
 });
