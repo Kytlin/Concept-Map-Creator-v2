@@ -1,6 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import FetchCollections from '../api/FetchCollections';
 
 const collections = () => {
+    useEffect(async () => {
+        try {
+            const response = await FetchCollections.get("/");
+            console.log(response);
+        } catch (err) {
+            console.log(err);
+        }
+    }, [])
+
     return (<>
         <div className="grid">
             <div className="title">Concept Map Collections</div>

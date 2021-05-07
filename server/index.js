@@ -1,10 +1,12 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const path = require('path');
 const db = require('./database');
 const port = process.env.PORT || 3000;
 
+app.use(cors())
 app.use(express.static(path.join(__dirname, '../dist')));
 app.use(express.json());
 
