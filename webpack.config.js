@@ -7,6 +7,7 @@ module.exports = function(_env, argv) {
     const isDevelopment = !isProduction;
 
     return {
+        target: 'node',
         devtool: isDevelopment && "inline-source-map", 
         entry: './src/index.js',
         output: {

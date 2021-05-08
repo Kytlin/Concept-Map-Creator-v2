@@ -36,3 +36,21 @@
 .summary {
     font-size: 14px;
 }
+
+
+// ADD COLLECTIONS
+
+.add-title, .add-summary, .add-tag {
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.add-btn {
+    border-radius: 3px;
+}
+
+.add-btn:hover {
+    background-color: black;
+    color: white;
+    transition: 0.8s;
+}
