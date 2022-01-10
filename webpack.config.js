@@ -41,6 +41,8 @@ module.exports = function(_env, argv) {
             ]
         },
         devServer: {
+            host: '0.0.0.0',
+            port: 9000,
             historyApiFallback: true,
         },
         resolve: {
